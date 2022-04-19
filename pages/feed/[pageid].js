@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Head from 'next/head';
 import styles from "../../styles/Feed.module.css";
 import { useRouter } from "next/router";
 import { Toolbar } from "../../components/toolbar";
@@ -6,9 +7,17 @@ import { Toolbar } from "../../components/toolbar";
 export const Feed = ({ pageNumber, articles }) => {
   const router = useRouter();
 
-  return (
+  return articles.length ? (
+    <>
+      <Head>
+        <meta property="og:image" content={articles[0]?.urlToImage} />
+        <meta property="og:description" content={articles[0]?.description} />
+        <meta property="og:title" content={articles[0]?.title + ' and more!'} />
+      </Head>
+
     <div className="page-container">
       <Toolbar/>
+
       <div className={styles.main}>
         {articles.map((article, index) => (
           <div key={index} className={styles.post}>
@@ -48,6 +57,14 @@ export const Feed = ({ pageNumber, articles }) => {
           Next Page
         </div>
 
+      </div>
+    </div>
+    </>
+  ) : (
+    <div className='page-container'>
+      <Toolbar/>
+      <div className={styles.main}>
+        <h1>OOps! No articles for this page</h1>
       </div>
     </div>
   );
