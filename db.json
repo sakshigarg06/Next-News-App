@@ -1,0 +1,8 @@
+{
+  "employeeOfTheMonth": {
+    "name": "Sam",
+    "position": "Software Engineer",
+    "image": "https://cdn-icons-png.flaticon.com/512/4128/4128176.png",
+    "description": "Dev guy and tutorialist"
+  }
+}
